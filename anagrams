@@ -1,0 +1,24 @@
+class Solution{
+  public:
+    vector<vector<string> > Anagrams(vector<string>& string_list) {
+        unordered_map<string,vector<string>>mp;
+        vector<vector<string>>vec;
+        for(int i=0;i<string_list.size();i++){
+            string c = string_list[i];
+            sort(c.begin(),c.end());
+            if(mp.find(c)!=mp.end()){
+                mp[c].push_back(string_list[i]);
+            }
+            else{
+                vector<string>v;
+                v.push_back(string_list[i]);
+                mp.insert({c,v});
+            }
+        }
+        for( auto it = mp.begin(); it != mp.end(); ++it ) {
+        vec.push_back( it->second );
+        }
+        return vec;
+    
+    }
+};
