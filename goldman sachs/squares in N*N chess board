@@ -1,0 +1,11 @@
+class Solution {
+  public:
+    long long squaresInChessBoard(long long N) {
+       long res =0;
+       while(N>=1){
+           res = res + (N*N);
+           N--;
+       }
+      return res; 
+   }
+};
