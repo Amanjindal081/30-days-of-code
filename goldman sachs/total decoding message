@@ -1,0 +1,28 @@
+class Solution {
+	public:
+		int CountWays(string str){
+		    if(str[0]=='0'){
+		        return 0;
+		    }
+	
+		    int n = str.length();
+		    vector<int>answer(str.length(),0);
+		    answer[0]=1;
+		    long long mod = 1000000007;
+	
+		    for(int i=1;i<n;i++){
+		        if(str[i]!='0'){
+		            answer[i]=answer[i-1]%mod;
+		        }
+		        if(str[i-1]=='1'||(str[i-1]=='2'&&str[i]<='6')){
+		            if(i==1){
+		            answer[i] = answer[i]%mod+1;}
+		            else{
+		                answer[i]+=answer[i-2]%mod;
+		            }
+		        }
+		    }
+		    return answer[n-1]%mod;
+		}
+
+};
