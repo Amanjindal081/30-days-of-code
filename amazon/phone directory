@@ -1,0 +1,30 @@
+class Solution{
+public:
+    vector<vector<string>> displayContacts(int n, string contact[], string s)
+    {
+        set<string>mp;
+        for(int i=0;i<n;i++){
+           mp.insert(contact[i]);
+       }
+        vector<vector<string>>vec1;
+        for(int i=0;i<s.size();i++){
+            string p = s.substr(0,i+1);
+            vector<string>vec;
+            for(auto it:mp){
+                
+                string f = it;
+                if(p==f.substr(0,i+1)){
+                    vec.push_back(f);
+                }
+                
+            }
+            if(vec.size()==0){
+                vec.push_back("0");
+            }
+
+            vec1.push_back(vec);
+        }
+        return vec1;
+        // code here
+    }
+};
