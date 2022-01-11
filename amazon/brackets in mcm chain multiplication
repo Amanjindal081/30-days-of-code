@@ -1,0 +1,20 @@
+void printMcmOrder(int i,int j,int n,int **bracket,char &ch,string &res){
+if(i == j){
+res += ch;
+ch++;
+return;
+}//if
+
+res += '(';
+
+printMcmOrder(i,bracket[i][j],n,bracket,ch,res);
+printMcmOrder(bracket[i][j] + 1,j,n,bracket,ch,res);
+
+res += ')';
+}//func
+
+string matrixChainOrder(int p[], int n){
+int dp[n][n];
+int **bracket;
+bracket = new int*[n];
+for(int i=0;i<n;i++) bracket[i]="new" int[n];="" for(int="" i="1;i&lt;n;i++)" dp[i][i]="0;" for(int="" l="2;l&lt;n;l++){" for(int="" i="1;i" <="" n-l+1;i++){="" int="" j="i+l-1;" dp[i][j]="INT_MAX;" for(int="" k="i;k" <="j-1;k++){" int="" opr="dp[i][k]" +="" dp[k+1][j]="" +="" p[i-1]*p[k]*p[j];="" if(opr="" <="" dp[i][j]){="" dp[i][j]="opr;" bracket[i][j]="k;" }="" if="" }="" for="" }="" for="" }="" for="" string="" res="" ;="" char="" ch="A" ;="" printmcmorder(1,n-1,n,bracket,ch,res);="" return="" res;="" }="" <="" blockquote="">
