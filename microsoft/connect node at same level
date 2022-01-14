@@ -1,0 +1,37 @@
+class Solution
+{
+    public:
+    //Function to connect nodes at same level.
+    void connect(Node *root)
+    {
+        queue<Node*>q;
+        if(root==NULL){
+            return;
+ 
+        }
+        q.push(root);
+        while(q.size()>0){
+            int c = q.size();
+            Node* r;
+            while(c--){
+                r=q.front();
+                q.pop();
+                if(r->left){
+                    q.push(r->left);
+                }
+                if(r->right){
+                    q.push(r->right);
+                }
+                if(c==0){
+                    r->nextRight=NULL;
+                }
+                else{
+                    r->nextRight=q.front();
+                }
+                
+            }
+        }
+       // Your Code Here
+    }    
+      
+};
