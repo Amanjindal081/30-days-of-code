@@ -1,0 +1,19 @@
+string findbinary(int x){
+    string s;
+    while(x!=0){
+        s+=to_string(x%2);
+        x=x/2;
+    }
+    reverse(s.begin(),s.end());
+    return s;
+}
+vector<string> generate(int N)
+{
+    vector<string>results;
+    for(int i=1;i<=N;i++){
+        results.push_back(findbinary(i));
+    }
+    return results;
+    
+	// Your code here
+}
