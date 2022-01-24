@@ -1,0 +1,41 @@
+class Solution {
+  public:
+    int minInsAndDel(int A[], int B[], int N, int M) {
+        map <int,int> m;
+       
+       for(int i=0;i<M;i++)
+       {
+           m.insert({B[i],i});
+       }
+       
+       vector <int> v;
+       for(int i=0;i<N;i++)
+       {
+            if (m.find(A[i]) != m.end())
+        {
+              v.push_back(A[i]);
+        }
+       
+       }
+       int n= v.size();
+       if(v.size()==0){
+           return N+M;
+       }
+       int l =  LIS(v);
+       
+       vector<int>dp(n,1);
+       for(int i=0;i<n;i++){
+           for(int j=0;j<i;j++){
+               if(v[i]>v[j]){
+                   dp[i] = max(dp[i],dp[j]+1);
+                   l = max(l,dp[i]);
+               }
+               
+           }
+       }
+       
+       
+       int res = (N - l)  + (M-l);
+       return res;
+    }
+};
