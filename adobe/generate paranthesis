@@ -1,0 +1,29 @@
+class Solution
+{
+    public:
+    vector<string> AllParenthesis(int n) 
+    {
+        vector<string> vec;
+        solve(n,"",n,vec);
+        return vec;
+        // Your code goes here 
+    }
+    void solve(int n,string ans,int a,vector<string> &vec){
+        if(a<0){
+            return;
+        }
+     
+    
+        if(n<0){
+            return;
+        }
+        if(a==0 && n==0){
+            vec.push_back(ans);
+            return;
+        }
+        if(n>=0)
+        solve(n-1,ans+'(',a,vec);
+        if(a>n)
+        solve(n,ans+')',a-1,vec);
+    }
+};
