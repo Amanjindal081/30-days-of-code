@@ -1,0 +1,25 @@
+lass Solution {
+public:
+    int maxCoins(vector<int>&A,int n)
+    {
+        vector<vector<int>> dp(n+1, vector<int>(n+1, -1));
+        return sumup(A, dp, 0, n-1);
+        
+        
+	    //Write your code here
+    }
+    int sumup(vector<int>&A,vector<vector<int>> &dp,int start,int end){
+        if(start>end){
+            return dp[start][end]=0;
+        }
+        if(start==end){
+            return dp[start][end]=A[start];
+        }
+        if(dp[start][end]!=-1){
+            return dp[start][end];
+        }
+        int left = A[start]+min(sumup(A,dp,start+2,end),sumup(A,dp,start+1,end-1));
+        int right = A[end] +min(sumup(A,dp,start,end-2),sumup(A,dp,start+1,end-1));
+        return dp[start][end]=max(left,right);
+    }
+};
