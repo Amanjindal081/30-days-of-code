@@ -1,0 +1,20 @@
+if(index==word.size()){
+return true;
+}
+//making choices and constraints
+if(vno+1<board.size() &&="" board[vno+1][pos]="=word[index]){" board[vno+1][pos]="0" ;="" if(iswordthere(board,index+1,word,vno+1,pos))="" return="" true;="" else="" board[vno+1][pos]="word[index];" backtracking="" }="" if(vno-1="">=0 && board[vno-1][pos]==word[index]){
+board[vno-1][pos]='0';
+if(isWordThere(board,index+1,word,vno-1,pos))
+return true;
+else board[vno-1][pos]=word[index]; //Backtracking
+}
+if(pos+1<board[vno].size() &&="" board[vno][pos+1]="=word[index]){" board[vno][pos+1]="0" ;="" if(iswordthere(board,index+1,word,vno,pos+1))="" return="" true;="" else="" board[vno][pos+1]="word[index];" backtracking="" }="" if(pos-1="">=0 && board[vno][pos-1]==word[index]){
+board[vno][pos-1]='0';
+if(isWordThere(board,index+1,word,vno,pos-1))
+return true;
+else board[vno][pos-1]=word[index]; //Backtracking
+}
+return false;
+}
+bool isWordExist(vector<vector<char>>& board, string word) {
+for(int i=0;i<board.size();i++){ for(int="" j="0;j&lt;board[i].size();j++){" if(board[i][j]="=word[0]){board[i][j]='0';" if(iswordthere(board,1,word,i,j))="" return="" true;="" else="" board[i][j]="word[0];" }="" }="" }="" return="" false;="" }="">
