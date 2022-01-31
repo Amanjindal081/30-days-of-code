@@ -1,0 +1,30 @@
+constexpr int infinity = ~(1<<31);
+constexpr unsigned int SIGN = (1<<31);
+int divide(int dividend, int divisor) {
+       if(!divisor) return infinity;
+       if(!dividend) return 0;
+        if(dividend == SIGN && divisor == -1)return infinity;
+        
+        unsigned u_dividend = dividend & SIGN? ~dividend: dividend -1;
+        u_dividend++;
+        
+        unsigned u_divisor = divisor & SIGN? ~divisor: divisor -1;
+        u_divisor++;
+        
+        unsigned int ans =0;
+        if(u_divisor^1){
+            short int pow;
+            for(pow = 0; u_divisor < u_dividend; ++pow)u_divisor = u_divisor <<1;
+       
+            for(; pow >=0; --pow){
+                ans = ans<<1;
+                if(u_dividend >= u_divisor){
+                    ans |= 1;
+                    u_dividend -= u_divisor; 
+                    if(!u_dividend){ ans = ans << pow; break;} 
+                }    
+                u_divisor = u_divisor >>1;            
+            }
+        }else ans = u_dividend;
+        return (dividend ^ divisor) & SIGN ?-ans:ans;
+    }
