@@ -1,0 +1,24 @@
+class Solution {
+public:
+    bool winnerOfGame(string colors) {
+        int ca=0;
+        int cb=0;
+        if(colors.size()<3){
+            return false;
+        }
+        for(int i=0;i<colors.size()-2;i++){
+            if(colors.substr(i,3)=="AAA"){
+                ca++;
+            }
+            if(colors.substr(i,3)=="BBB"){
+                cb++;
+            }
+        }
+        if(ca>cb){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+};
