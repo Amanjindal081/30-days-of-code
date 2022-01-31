@@ -1,0 +1,35 @@
+class Solution {
+public:
+    bool stoneGame(vector<int>& piles) {
+        int total=0;
+        for(int i=0;i<piles.size();i++){
+            total+=piles[i];
+        }
+        map<pair<int,int>,int>hash;
+        int bob = play(piles,0,piles.size()-1,hash);
+        int alice = total-bob;
+        if(alice>=bob){
+            return false;
+        }
+        else{
+            return true;
+        }
+    
+    }
+    int play(vector<int>&piles,int i,int j,map<pair<int,int>,int>&hash){
+        if(j-i==1){
+            return piles[i]>piles[j]?piles[i]:piles[j];
+        }
+        if(i>j){
+            return 0;
+        }
+        pair<int,int>key = make_pair(i,j);
+        if(hash.find(key)!=hash.end()){
+            return hash[key];
+        }
+        
+        int ans = max(piles[i]+min(play(piles,i+2,j,hash),play(piles,i+1,j-1,hash)),piles[j]+min(play(piles,i,j-2,hash),play(piles,i+1,j-1,hash)));
+        hash[key]=ans;
+        return ans;
+    }
+};
